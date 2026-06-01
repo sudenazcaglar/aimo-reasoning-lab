@@ -1,0 +1,77 @@
+[
+  {
+    "id": "tool-demo-gptoss20b",
+    "name": "Tool Demo - Modular Arithmetic",
+    "model_id": "gpt_oss_20b_base",
+    "benchmark_id": "comp_math_24_25",
+    "config": {
+      "max_tokens": 2048,
+      "temperature": 0.7,
+      "num_attempts": 1,
+      "tool_use": true
+    },
+    "status": "completed",
+    "started_at": "2026-05-25T00:00:00Z",
+    "finished_at": "2026-05-25T00:30:00Z",
+    "metrics": {
+      "accuracy": 0.35,
+      "avg_latency_ms": 45000,
+      "avg_token_count": 1200,
+      "correct": 7,
+      "incorrect": 13,
+      "tool_errors": 5,
+      "formatting_errors": 0
+    },
+    "created_at": "2026-05-25T00:00:00Z"
+  },
+  {
+    "id": "gpt_oss_20b_sft1k_20",
+    "name": "GPT-OSS-20B SFT-1K - AIME25 First 20",
+    "model_id": "gpt_oss_20b_sft1k",
+    "benchmark_id": "comp_math_24_25",
+    "config": {
+      "max_tokens": 2048,
+      "temperature": 0.7,
+      "num_attempts": 1,
+      "tool_use": false
+    },
+    "status": "completed",
+    "started_at": "2026-05-25T00:00:00Z",
+    "finished_at": "2026-05-25T00:30:00Z",
+    "metrics": {
+      "accuracy": 0.14,
+      "avg_latency_ms": 60000,
+      "avg_token_count": 1800,
+      "correct": 2,
+      "incorrect": 12,
+      "tool_errors": 0,
+      "formatting_errors": 1
+    },
+    "created_at": "2026-05-25T00:00:00Z"
+  },
+  {
+    "id": "gpt_oss_20b_harmony1k_20",
+    "name": "GPT-OSS-20B Harmony-SFT-1K - AIME25 First 20",
+    "model_id": "gpt_oss_20b_harmony1k",
+    "benchmark_id": "comp_math_24_25",
+    "config": {
+      "max_tokens": 2048,
+      "temperature": 0.7,
+      "num_attempts": 1,
+      "tool_use": false
+    },
+    "status": "completed",
+    "started_at": "2026-05-25T00:00:00Z",
+    "finished_at": "2026-05-25T00:30:00Z",
+    "metrics": {
+      "accuracy": 0.10,
+      "avg_latency_ms": 62000,
+      "avg_token_count": 1900,
+      "correct": 2,
+      "incorrect": 18,
+      "tool_errors": 0,
+      "formatting_errors": 0
+    },
+    "created_at": "2026-05-25T00:00:00Z"
+  }
+]

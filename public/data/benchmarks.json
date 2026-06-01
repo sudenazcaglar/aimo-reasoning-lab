@@ -1,0 +1,11 @@
+[
+  {
+    "id": "comp_math_24_25",
+    "name": "Comp-Math-24-25",
+    "slug": "comp-math-24-25",
+    "description": "Competition-level mathematics benchmark reconstructed from NVIDIA NeMo Skills, containing AIME 2024/2025 and HMMT 2024/2025 style problems.",
+    "problem_count": 256,
+    "subsets": ["aime25", "aime24", "hmmt_feb24", "hmmt_nov24", "hmmt_feb25"],
+    "created_at": "2026-05-25T00:00:00Z"
+  }
+]

@@ -1,0 +1,29 @@
+[
+  {
+    "id": "gpt_oss_20b_base",
+    "name": "GPT-OSS-20B Base",
+    "type": "base",
+    "base_model": "openai/gpt-oss-20b",
+    "adapter_path": null,
+    "description": "Base GPT-OSS-20B model evaluated without fine-tuning.",
+    "created_at": "2026-05-25T00:00:00Z"
+  },
+  {
+    "id": "gpt_oss_20b_sft1k",
+    "name": "GPT-OSS-20B SFT-1K",
+    "type": "sft",
+    "base_model": "openai/gpt-oss-20b",
+    "adapter_path": "/workspace/outputs/sft_math_1k",
+    "description": "LoRA adapter trained on 1K generic OpenMathInstruct-style math examples.",
+    "created_at": "2026-05-25T00:00:00Z"
+  },
+  {
+    "id": "gpt_oss_20b_harmony1k",
+    "name": "GPT-OSS-20B Harmony-SFT-1K",
+    "type": "sft",
+    "base_model": "openai/gpt-oss-20b",
+    "adapter_path": "/workspace/outputs/sft_harmony_1k",
+    "description": "LoRA adapter trained with GPT-OSS-style analysis/final channel formatting.",
+    "created_at": "2026-05-25T00:00:00Z"
+  }
+]

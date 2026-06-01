@@ -1,0 +1,50 @@
+[
+  {
+    "id": "demo-result-001",
+    "problem_id": "demo-001",
+    "problem": {
+      "subset": "Custom Demo"
+    },
+    "correct": true,
+    "prediction": "68768",
+    "expected_answer": "68768",
+    "latency_ms": 3320,
+    "token_count": 1237,
+    "reasoning": "We need the last five digits of 2^2025. This is equivalent to computing 2^2025 modulo 100000. I will use Python to compute the modular exponentiation exactly.",
+    "tool_calls": [
+      {
+        "code": "print(pow(2, 2025, 100000))",
+        "output": "68768",
+        "error": null,
+        "execution_time_ms": 24
+      }
+    ]
+  },
+  {
+    "id": "demo-result-002",
+    "problem_id": "demo-002",
+    "problem": {
+      "subset": "Tool Error Recovery"
+    },
+    "correct": true,
+    "prediction": "1234567891",
+    "expected_answer": "1234567891",
+    "latency_ms": 4860,
+    "token_count": 1584,
+    "reasoning": "The first Python call failed because factor was not defined. I corrected the approach by using sympy.factorint.",
+    "tool_calls": [
+      {
+        "code": "print(factor(1234567891))",
+        "output": "",
+        "error": "NameError: name 'factor' is not defined",
+        "execution_time_ms": 18
+      },
+      {
+        "code": "from sympy import factorint\nprint(factorint(1234567891))",
+        "output": "{1234567891: 1}",
+        "error": null,
+        "execution_time_ms": 41
+      }
+    ]
+  }
+]
