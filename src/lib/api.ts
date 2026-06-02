@@ -102,19 +102,32 @@ export async function fetchExperimentsWithLive(): Promise<Experiment[]> {
 }
 
 export async function fetchExperiment(id: string): Promise<Experiment | null> {
-  const experiments = await fetchExperiments();
+  try {
+    const liveExperiment = await fetchLiveExperiment(id);
+    if (liveExperiment && liveExperiment.id) {
+      return liveExperiment;
+    }
+  } catch {
+    // not a live experiment, continue with static lookup
+  }
+
+  const experiments = await fetchExperimentsWithLive();
   return experiments.find((e) => e.id === id) ?? null;
 }
 
 export async function fetchExperimentResults(
   experimentId: string,
 ): Promise<EvaluationResult[]> {
-  if (experimentId.startsWith("custom_")) {
-    try {
-      return await loadLiveJson<EvaluationResult[]>(`/results/${experimentId}`);
-    } catch {
-      return [];
+  try {
+    const liveResults = await loadLiveJson<EvaluationResult[]>(
+      `/results/${experimentId}`,
+    );
+
+    if (Array.isArray(liveResults)) {
+      return liveResults;
     }
+  } catch {
+    // not live, continue with static file
   }
 
   return loadJson<EvaluationResult[]>(`/data/results/${experimentId}.json`);
@@ -193,4 +206,44 @@ export async function fetchSolveJob(jobId: string): Promise<SolveJob> {
 
 export async function fetchSolveJobs(): Promise<SolveJob[]> {
   return loadLiveJson<SolveJob[]>("/jobs");
+}
+
+export type LiveExperimentRequest = {
+  name: string;
+  benchmark_id: string;
+  benchmark_name: string;
+  problems: Array<{
+    id: string;
+    problem?: string;
+    statement?: string;
+    expected_answer?: string | number | null;
+    subset?: string;
+  }>;
+  config: SolveConfig;
+};
+
+export async function createLiveExperiment(
+  payload: LiveExperimentRequest,
+): Promise<Experiment> {
+  const base = LIVE_API_BASE.replace(/\/$/, "");
+
+  const response = await fetch(`${base}/experiments/run`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      "ngrok-skip-browser-warning": "true",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to create live experiment");
+  }
+
+  return response.json();
+}
+
+export async function fetchLiveExperiment(id: string): Promise<Experiment> {
+  return loadLiveJson<Experiment>(`/experiments/${id}`);
 }
