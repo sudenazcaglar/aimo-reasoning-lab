@@ -1,4 +1,4 @@
-## Project Screenshots
+## Project Overview
 
 **Project Portfolio Website:** [https://aimo-portfolio.vercel.app](https://aimo-portfolio.vercel.app)
 
